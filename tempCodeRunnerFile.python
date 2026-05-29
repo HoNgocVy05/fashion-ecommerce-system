@@ -1,0 +1,89 @@
+import heapq
+
+class HanoiState:
+    def __init__(self, pegs, g=0, parent=None, move_desc=""):
+        self.pegs = pegs
+        self.g = g
+        self.parent = parent
+        self.move_desc = move_desc
+        self.h = self.calculate_heuristic()
+        self.f = self.g + self.h
+
+    def calculate_heuristic(self):
+        total_disks = sum(len(peg) for peg in self.pegs)
+        correct_in_c = 0
+        expected_disk = total_disks
+        for disk in reversed(self.pegs[2]):
+            if disk == expected_disk:
+                correct_in_c += 1
+                expected_disk -= 1
+            else:
+                break
+                
+        k = total_disks - correct_in_c
+        return (2 ** k) - 1
+
+    def __lt__(self, other):
+        return self.f < other.f
+
+def get_allowed_moves(pegs):
+    moves = []
+    peg_names = ['A', 'B', 'C']
+    for i in range(3):
+        for j in range(3):
+            if i != j:
+                if pegs[i]:
+                    disk_to_move = pegs[i][-1]
+                    if not pegs[j] or pegs[j][-1] > disk_to_move:
+                        new_pegs = list(list(p) for p in pegs)
+                        new_pegs[i].pop()
+                        new_pegs[j].append(disk_to_move)
+                        new_pegs_tuple = tuple(tuple(p) for p in new_pegs)
+                        move_desc = f"{peg_names[i]} -> {peg_names[j]}"
+                        moves.append((new_pegs_tuple, move_desc))
+    return moves
+
+def solve_hanoi_astar(num_disks):
+    initial_peg_a = tuple(range(num_disks, 0, -1))
+    start_pegs = (initial_peg_a, (), ())
+    start_state = HanoiState(start_pegs, g=0)
+    goal_pegs = ((), (), initial_peg_a)
+    
+    open_set = []
+    heapq.heappush(open_set, start_state)
+    closed_set = {}
+    closed_set[start_pegs] = 0
+    
+    while open_set:
+        current_state = heapq.heappop(open_set)
+        if current_state.pegs == goal_pegs:
+            path = []
+            curr = current_state
+            while curr.parent is not None:
+                path.append(curr.move_desc)
+                curr = curr.parent
+            path.reverse()
+            return current_state.g, path
+            
+        for next_pegs, move_desc in get_allowed_moves(current_state.pegs):
+            new_g = current_state.g + 1
+            if next_pegs not in closed_set or new_g < closed_set[next_pegs]:
+                closed_set[next_pegs] = new_g
+                next_state = HanoiState(next_pegs, g=new_g, parent=current_state, move_desc=move_desc)
+                heapq.heappush(open_set, next_state)
+    return None, []
+
+# --- Phần xử lý Input/Output đã được tinh giản ---
+if __name__ == "__main__":
+    try:
+        # Nhận vào số đĩa trực tiếp, không in chữ "Vào:"
+        num_disks = int(input())
+        if num_disks > 0:
+            cost, steps = solve_hanoi_astar(num_disks)
+            
+            # In ra kết quả trực tiếp, không in chữ "Ra:"
+            print(cost)
+            for step in steps:
+                print(step)
+    except ValueError:
+        pass
