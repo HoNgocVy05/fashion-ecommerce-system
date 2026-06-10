@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users")
-public class userEntity {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class userEntity {
 
     @ManyToOne
     @JoinColumn(name = "role_id")
-    private roleEntity role;
+    private RoleEntity role;
 
     private String gender;
 
@@ -49,8 +49,8 @@ public class userEntity {
     public String getPassword() { return password; }    
     public void setPassword(String password) { this.password = password; }
 
-    public roleEntity getRole() { return role; }
-    public void setRole(roleEntity role) { this.role = role; }
+    public RoleEntity getRole() { return role; }
+    public void setRole(RoleEntity role) { this.role = role; }
 
     public String getGender() { return gender; }
     public void setGender(String gender) { this.gender = gender; }

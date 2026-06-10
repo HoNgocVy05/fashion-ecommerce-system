@@ -2,7 +2,7 @@ package com.fashion.ecommerce.dto;
 
 import jakarta.validation.constraints.NotBlank;
 
-public class loginDto {
+public class LoginDto {
 
     @NotBlank(message = "Email không được để trống")
     private String email;

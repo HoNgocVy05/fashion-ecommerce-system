@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public class registerDto {
+public class RegisterDto {
 
     @NotBlank(message = "Tên không được để trống")
     private String fullname;
