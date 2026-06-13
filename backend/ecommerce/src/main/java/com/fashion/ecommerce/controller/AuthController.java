@@ -19,11 +19,13 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
+    // register 
     @PostMapping("/register")
     public Object register(@Valid @RequestBody RegisterDto request) {
         return authService.register(request);
     }
 
+    // login
     @PostMapping("/login")
     public Object login(@Valid @RequestBody LoginDto request) {
         return authService.login(request);

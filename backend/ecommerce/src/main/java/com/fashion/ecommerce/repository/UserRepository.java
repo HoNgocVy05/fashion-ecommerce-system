@@ -7,4 +7,5 @@ import com.fashion.ecommerce.entity.UserEntity;
 public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
     UserEntity findByEmail(String email);
+    UserEntity findByProviderAndProviderId(String provider, String providerId);
 }

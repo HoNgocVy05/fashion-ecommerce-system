@@ -20,11 +20,17 @@ public class UserEntity {
     @Column(nullable = false)
     private String fullname;
 
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
+
+    @Column(name = "provider")
+    private String provider; // google, facebook, local
+
+    @Column(name = "provider_id")
+    private String providerId;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
@@ -48,6 +54,12 @@ public class UserEntity {
 
     public String getPassword() { return password; }    
     public void setPassword(String password) { this.password = password; }
+
+    public String getProvider() { return provider; }
+    public void setProvider(String provider) { this.provider = provider; }
+
+    public String getProviderId() { return providerId; }
+    public void setProviderId(String providerId) { this.providerId = providerId; }
 
     public RoleEntity getRole() { return role; }
     public void setRole(RoleEntity role) { this.role = role; }

@@ -17,12 +17,13 @@ public class AuthServiceImpl implements AuthService {
 
     @Autowired
     private UserRepository userRepository;
-
+    
     @Autowired
     private JwtUtil jwtUtil;
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+    // register
     @Override
     public String register(RegisterDto dto) {
 
@@ -42,6 +43,7 @@ public class AuthServiceImpl implements AuthService {
         return "Đăng ký thành công";
     }
 
+    // login
     @Override
     public String login(LoginDto dto) {
 
@@ -55,6 +57,7 @@ public class AuthServiceImpl implements AuthService {
             throw new ApiException("Sai mật khẩu", HttpStatus.UNAUTHORIZED);
         }
 
+        // Generate token
         return jwtUtil.generateToken(user.getEmail());
     }
 }
