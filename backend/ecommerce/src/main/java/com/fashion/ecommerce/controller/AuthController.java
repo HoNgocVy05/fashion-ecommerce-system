@@ -1,11 +1,11 @@
 package com.fashion.ecommerce.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fashion.ecommerce.dto.ApiResponse;
 import com.fashion.ecommerce.dto.LoginDto;
 import com.fashion.ecommerce.dto.RegisterDto;
 import com.fashion.ecommerce.service.AuthService;
@@ -16,8 +16,11 @@ import jakarta.validation.Valid;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-    @Autowired
-    private AuthService authService;
+    private final AuthService authService;
+
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
 
     // register 
     @PostMapping("/register")
@@ -27,7 +30,7 @@ public class AuthController {
 
     // login
     @PostMapping("/login")
-    public Object login(@Valid @RequestBody LoginDto request) {
+    public ApiResponse<String> login(@RequestBody LoginDto request) {
         return authService.login(request);
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import com.fashion.ecommerce.entity.AuthProvider;
 import com.fashion.ecommerce.entity.UserEntity;
 import com.fashion.ecommerce.repository.UserRepository;
 
@@ -37,9 +38,9 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
 
         OAuth2User oauthUser = (OAuth2User) authentication.getPrincipal();
 
-        String provider = request.getRequestURI().contains("google") ? "google" : "facebook";
+        AuthProvider provider = request.getRequestURI().contains("google") ? AuthProvider.GOOGLE : AuthProvider.FACEBOOK;
 
-        String providerId = provider.equals("google")
+        String providerId = provider == AuthProvider.GOOGLE
                 ? oauthUser.getAttribute("sub")
                 : oauthUser.getAttribute("id");
 

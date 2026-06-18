@@ -2,6 +2,8 @@ package com.fashion.ecommerce.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -26,8 +28,8 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
-    @Column(name = "provider")
-    private String provider; // google, facebook, local
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
 
     @Column(name = "provider_id")
     private String providerId;
@@ -55,8 +57,8 @@ public class UserEntity {
     public String getPassword() { return password; }    
     public void setPassword(String password) { this.password = password; }
 
-    public String getProvider() { return provider; }
-    public void setProvider(String provider) { this.provider = provider; }
+    public AuthProvider getProvider() { return provider; }
+    public void setProvider(AuthProvider provider) { this.provider = provider; }
 
     public String getProviderId() { return providerId; }
     public void setProviderId(String providerId) { this.providerId = providerId; }
