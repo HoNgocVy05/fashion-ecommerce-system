@@ -12,6 +12,25 @@ import jakarta.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    
+    // @ExceptionHandler(AccessDeniedException.class)
+    // public ResponseEntity<?> handleAccessDenied(
+    //         AccessDeniedException ex,
+    //         HttpServletRequest request
+    // ) {
+
+    //     Map<String, Object> res = new HashMap<>();
+
+    //     res.put("timestamp", LocalDateTime.now());
+    //     res.put("status", 403);
+    //     res.put("error", "Forbidden");
+    //     res.put("message", "Bạn không có quyền truy cập");
+    //     res.put("path", request.getRequestURI());
+
+    //     return ResponseEntity
+    //             .status(HttpStatus.FORBIDDEN)
+    //             .body(res);
+    // }
 
     // xử lý lỗi custom
     @ExceptionHandler(ApiException.class)
