@@ -7,30 +7,31 @@ import java.util.Map;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
     
-    // @ExceptionHandler(AccessDeniedException.class)
-    // public ResponseEntity<?> handleAccessDenied(
-    //         AccessDeniedException ex,
-    //         HttpServletRequest request
-    // ) {
+     //@ExceptionHandler(AccessDeniedException.class)
+     //public ResponseEntity<?> handleAccessDenied(
+             //AccessDeniedException ex,
+             //HttpServletRequest request
+     //) {
 
-    //     Map<String, Object> res = new HashMap<>();
+         //Map<String, Object> res = new HashMap<>();
 
-    //     res.put("timestamp", LocalDateTime.now());
-    //     res.put("status", 403);
-    //     res.put("error", "Forbidden");
-    //     res.put("message", "Bạn không có quyền truy cập");
-    //     res.put("path", request.getRequestURI());
+         //res.put("timestamp", LocalDateTime.now());
+         //res.put("status", 403);
+         //res.put("error", "Forbidden");
+         //res.put("message", "Bạn không có quyền truy cập");
+         //res.put("path", request.getRequestURI());
 
-    //     return ResponseEntity
-    //             .status(HttpStatus.FORBIDDEN)
-    //             .body(res);
-    // }
+         //return ResponseEntity
+                 //.status(HttpStatus.FORBIDDEN)
+                 //.body(res);
+     //}
 
     // xử lý lỗi custom
     @ExceptionHandler(ApiException.class)
