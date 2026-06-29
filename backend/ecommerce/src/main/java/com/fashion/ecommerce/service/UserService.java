@@ -16,8 +16,6 @@ public interface UserService{
 
     List<UserEntity> getAllUsers();
 
-    UserEntity updateUser(Integer id,String currentEmail,UserUpdateDto dto);
-
     void deleteUser(Integer id,String currentEmail);
 
     void lockUser(Integer id,String currentEmail);

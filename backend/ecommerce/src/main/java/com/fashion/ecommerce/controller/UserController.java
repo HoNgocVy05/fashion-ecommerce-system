@@ -45,11 +45,6 @@ public class UserController{
         return "Admin created";
     }
 
-    @PutMapping("/{id}")
-    public UserEntity updateUser(@PathVariable Integer id,Authentication auth,@RequestBody UserUpdateDto dto){
-        return userService.updateUser(id,auth.getName(),dto);
-    }
-
     @DeleteMapping("/{id}")
     public String deleteUser(@PathVariable Integer id,Authentication auth){
         userService.deleteUser(id,auth.getName());
