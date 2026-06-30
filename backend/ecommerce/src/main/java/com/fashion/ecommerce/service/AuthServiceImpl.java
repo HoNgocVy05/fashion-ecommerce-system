@@ -5,8 +5,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fashion.ecommerce.dto.ApiResponse;
-import com.fashion.ecommerce.dto.LoginDto;
-import com.fashion.ecommerce.dto.RegisterDto;
+import com.fashion.ecommerce.dto.auth.LoginDto;
+import com.fashion.ecommerce.dto.auth.RegisterDto;
 import com.fashion.ecommerce.entity.RoleEntity;
 import com.fashion.ecommerce.entity.UserEntity;
 import com.fashion.ecommerce.exception.ApiException;

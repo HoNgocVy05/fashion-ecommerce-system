@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fashion.ecommerce.dto.ApiResponse;
-import com.fashion.ecommerce.dto.LoginDto;
-import com.fashion.ecommerce.dto.RegisterDto;
+import com.fashion.ecommerce.dto.auth.LoginDto;
+import com.fashion.ecommerce.dto.auth.RegisterDto;
 import com.fashion.ecommerce.service.AuthService;
 
 import jakarta.validation.Valid;

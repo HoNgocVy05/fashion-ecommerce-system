@@ -2,8 +2,8 @@ package com.fashion.ecommerce.service;
 
 import java.util.List;
 
-import com.fashion.ecommerce.dto.CategoryRequestDto;
-import com.fashion.ecommerce.dto.CategoryResponseDto;
+import com.fashion.ecommerce.dto.category.CategoryRequestDto;
+import com.fashion.ecommerce.dto.category.CategoryResponseDto;
 
 public interface CategoryService {
 

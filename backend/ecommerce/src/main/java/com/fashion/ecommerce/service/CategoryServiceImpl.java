@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import com.fashion.ecommerce.dto.CategoryRequestDto;
-import com.fashion.ecommerce.dto.CategoryResponseDto;
+import com.fashion.ecommerce.dto.category.CategoryRequestDto;
+import com.fashion.ecommerce.dto.category.CategoryResponseDto;
 import com.fashion.ecommerce.entity.CategoryEntity;
 import com.fashion.ecommerce.exception.ApiException;
 import com.fashion.ecommerce.repository.CategoryRepository;

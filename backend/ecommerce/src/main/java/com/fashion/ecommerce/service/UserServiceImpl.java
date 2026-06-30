@@ -1,18 +1,18 @@
 package com.fashion.ecommerce.service;
 
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.fashion.ecommerce.dto.UserUpdateDto;
 import com.fashion.ecommerce.entity.RoleEntity;
 import com.fashion.ecommerce.entity.UserEntity;
+import com.fashion.ecommerce.exception.ApiException;
 import com.fashion.ecommerce.repository.RoleRepository;
 import com.fashion.ecommerce.repository.UserRepository;
-import org.springframework.http.HttpStatus;
-import com.fashion.ecommerce.exception.ApiException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import java.util.List;
 
 
 @Service
