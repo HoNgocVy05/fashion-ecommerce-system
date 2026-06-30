@@ -1,6 +1,7 @@
 package com.fashion.ecommerce.service;
 
-import com.fashion.ecommerce.dto.UserUpdateDto;
+import com.fashion.ecommerce.dto.user.UserUpdateRequestDto;
+import com.fashion.ecommerce.dto.user.CreateAdminRequestDto;
 import com.fashion.ecommerce.entity.UserEntity;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface UserService{
 
     UserEntity getMyProfile(String email);
 
-    UserEntity updateMyProfile(String email,UserUpdateDto dto);
+    UserEntity updateMyProfile(String email, UserUpdateRequestDto dto);
 
     void deleteMyAccount(String email);
 
@@ -20,7 +21,7 @@ public interface UserService{
 
     void lockUser(Integer id,String currentEmail);
 
-    void createAdmin(UserUpdateDto dto);
+    void createAdmin(CreateAdminRequestDto dto);
 
     void changeRole(Integer id,String role);
 

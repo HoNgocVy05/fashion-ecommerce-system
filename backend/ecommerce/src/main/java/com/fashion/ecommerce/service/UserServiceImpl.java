@@ -7,7 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.fashion.ecommerce.dto.UserUpdateDto;
+import com.fashion.ecommerce.dto.user.UserUpdateRequestDto;
+import com.fashion.ecommerce.dto.user.CreateAdminRequestDto;
 import com.fashion.ecommerce.entity.RoleEntity;
 import com.fashion.ecommerce.entity.UserEntity;
 import com.fashion.ecommerce.exception.ApiException;
@@ -37,7 +38,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public UserEntity updateMyProfile(String email,UserUpdateDto dto){
+    public UserEntity updateMyProfile(String email,UserUpdateRequestDto dto){
         UserEntity user=userRepository.findByEmail(email);
         if(user==null){
             throw new ApiException("User not found",HttpStatus.NOT_FOUND);
@@ -75,17 +76,31 @@ public class UserServiceImpl implements UserService{
         if(current==null){
             throw new ApiException("User not found",HttpStatus.NOT_FOUND);
         }
-        if(target.getRole()!=null
-                && current.getRole()!=null
-                && target.getRole().getName().equals("ADMIN")
-                && current.getRole().getName().equals("ADMIN")
+        String targetRole = target.getRole() != null
+                ? target.getRole().getName()
+                : "";
+
+        String currentRole = current.getRole() != null
+                ? current.getRole().getName()
+                : "";
+
+        if(targetRole.equals("SYSTEM_ADMIN")){
+            throw new ApiException(
+                    "ADMIN cannot delete SYSTEM_ADMIN",
+                    HttpStatus.FORBIDDEN
+            );
+        }
+
+        if(targetRole.equals("ADMIN")
+                && currentRole.equals("ADMIN")
                 && !target.getEmail().equals(currentEmail)){
-            throw new ApiException("ADMIN cannot delete ADMIN", HttpStatus.FORBIDDEN
+            throw new ApiException(
+                    "ADMIN cannot delete ADMIN",
+                    HttpStatus.FORBIDDEN
             );
         }
         userRepository.delete(target);
     }
-
     @Override
     public void lockUser(Integer id,String currentEmail){
         UserEntity target=userRepository.findById(id).orElseThrow();
@@ -107,19 +122,20 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void createAdmin(UserUpdateDto dto){
+    public void createAdmin(CreateAdminRequestDto dto){
 
-        RoleEntity role=roleRepository.findByName("ADMIN");
+        RoleEntity role = roleRepository.findByName("ADMIN");
         if(role==null){
-            throw new ApiException("ADMIN role not found", HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new ApiException(
+                    "ADMIN role not found",
+                    HttpStatus.INTERNAL_SERVER_ERROR
+            );
         }
-        UserEntity admin=new UserEntity();
+        UserEntity admin = new UserEntity();
         admin.setEmail(dto.getEmail());
         admin.setFullname(dto.getFullname());
         admin.setPhoneNumber(dto.getPhoneNumber());
-        admin.setPassword(
-                passwordEncoder.encode(dto.getPassword())
-        );
+        admin.setPassword(passwordEncoder.encode(dto.getPassword()));
         admin.setRole(role);
         admin.setIsActive(true);
         userRepository.save(admin);
