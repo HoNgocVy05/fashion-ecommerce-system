@@ -12,8 +12,17 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
 @Entity
 @Table(name = "categories")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class CategoryEntity {
 
     @Id
@@ -31,21 +40,5 @@ public class CategoryEntity {
 
     @OneToMany(mappedBy = "parent")
     private List<CategoryEntity> children;
-
-    // getters setters
-    public Long getId() {return id;}
-    public void setId(Long id) {this.id = id;}
-
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
-
-    public String getSlug() {return slug;}
-    public void setSlug(String slug) {this.slug = slug;}
-
-    public CategoryEntity getParent() {return parent;}
-    public void setParent(CategoryEntity parent) {this.parent = parent;}
-
-    public List<CategoryEntity> getChildren() {return children;}
-    public void setChildren(List<CategoryEntity> children) {this.children = children;}
 
 }

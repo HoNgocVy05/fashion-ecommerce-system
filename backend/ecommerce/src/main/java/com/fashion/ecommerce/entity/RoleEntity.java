@@ -7,8 +7,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
 @Entity
 @Table(name = "roles")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class RoleEntity {
 
     @Id
@@ -17,10 +26,4 @@ public class RoleEntity {
 
     @Column(unique = true)
     private String name; // SYSTEM_ADMIN, ADMIN, USER
-
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
 }

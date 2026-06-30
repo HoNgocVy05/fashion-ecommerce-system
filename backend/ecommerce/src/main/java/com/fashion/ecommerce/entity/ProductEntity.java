@@ -17,8 +17,17 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
 @Entity
 @Table(name = "products")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class ProductEntity {
 
     @Id
@@ -57,47 +66,4 @@ public class ProductEntity {
     private List<ProductSizeEntity> sizes;
 
     private LocalDateTime createdAt = LocalDateTime.now();
-
-    // getters setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public String getSlug() { return slug; }
-    public void setSlug(String slug) { this.slug = slug; }
-
-    public String getDescription() { return description; }
-    public void setDescription(String description) { this.description = description; }
-
-    public String getThumbnail() { return thumbnail; }
-    public void setThumbnail(String thumbnail) { this.thumbnail = thumbnail; }
-
-    public List<ProductImageEntity> getImages() { return images; }
-    public void setImages(List<ProductImageEntity> images) { this.images = images; }
-
-    public BigDecimal getOriginalPrice() { return originalPrice; }
-    public void setOriginalPrice(BigDecimal originalPrice) { this.originalPrice = originalPrice; }
-
-    public Integer getDiscountPercent() { return discountPercent; }
-    public void setDiscountPercent(Integer discountPercent) { this.discountPercent = discountPercent; }
-
-    public LocalDateTime getDiscountStart() { return discountStart; }
-    public void setDiscountStart(LocalDateTime discountStart) { this.discountStart = discountStart; }
-
-    public LocalDateTime getDiscountEnd() { return discountEnd; }
-    public void setDiscountEnd(LocalDateTime discountEnd) { this.discountEnd = discountEnd; }
-
-    public ProductStatus getStatus() { return status; }
-    public void setStatus(ProductStatus status) { this.status = status; }
-
-    public CategoryEntity getCategory() { return category; }
-    public void setCategory(CategoryEntity category) { this.category = category; }
-
-    public List<ProductSizeEntity> getSizes() { return sizes; }
-    public void setSizes(List<ProductSizeEntity> sizes) { this.sizes = sizes; }
-
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
 }

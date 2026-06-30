@@ -11,8 +11,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
 @Entity
 @Table(name = "users")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserEntity {
 
     @Id
@@ -44,34 +53,4 @@ public class UserEntity {
 
     private Boolean isActive = true;
 
-    // getter setter
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
-
-    public String getFullname() { return fullname; }
-    public void setFullname(String fullname) { this.fullname = fullname; }
-
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-
-    public String getPassword() { return password; }    
-    public void setPassword(String password) { this.password = password; }
-
-    public AuthProvider getProvider() { return provider; }
-    public void setProvider(AuthProvider provider) { this.provider = provider; }
-
-    public String getProviderId() { return providerId; }
-    public void setProviderId(String providerId) { this.providerId = providerId; }
-
-    public RoleEntity getRole() { return role; }
-    public void setRole(RoleEntity role) { this.role = role; }
-
-    public String getGender() { return gender; }
-    public void setGender(String gender) { this.gender = gender; }
-
-    public String getPhoneNumber() { return phoneNumber; }
-    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
-
-    public Boolean getIsActive() { return isActive; }
-    public void setIsActive(Boolean isActive) { this.isActive = isActive; }
 }
